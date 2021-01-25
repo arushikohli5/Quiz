@@ -24,7 +24,7 @@
            </div>
             <div class="row">
                 <div class="col-12 mt-5 mb-4 text-center">
-                    <h3 id="answerKey">Answer Key</h3>
+                    <h3 id="answerKeyHeading">Answer Key</h3>
                 </div>
             </div>            
 
@@ -56,12 +56,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn" id="Submit">Submit</button>
+                        <button class="btn" id="next">Next</button>
+                    </div>
+                </div>
+
             </div>
 
+            <div class="container jumboton bg-white m-5 py-4" id="answerKey"></div>
+            <div class="row">
+                <div class="col-md-2 col-3 my-2 mx-5">
+                    <button class="btn btn-primary" id="restart">Restart</button>
+                </div>
+            </div>
         </div>
     </body>
-    <script>
-        quiz=document.getElementById("quizContent");
+    <script src="index.js"></script>
+     <script>
+       /* quiz=document.getElementById("quizContent");
         result=document.getElementById("result");
         btn=document.getElementById("btn");
         correct=document.getElementById("correct");
@@ -226,7 +240,7 @@
         }
 
         quizQuestions();
-        btn.addEventListener('click',showResult);
+        btn.addEventListener('click',showResult);*/
         
     </script>
 </html>
