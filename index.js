@@ -127,7 +127,7 @@ var next=document.getElementById('next');
 var restart=document.getElementById('restart');
 var option = document.getElementsByName('option');
 var labels = document.getElementsByTagName('label');
-displayNextQuestion() ;
+displayNextQuestion();
 function displayNextQuestion(){
     if(index===questions.length){
         header.innerHTML=`Score:${score}`;
@@ -144,20 +144,89 @@ function displayNextQuestion(){
     statement.innerHTML=question1.question;
     for(let i=0;i<option.length;i++){
         option[i].disabled=false;
-        option[i].visited=false;
+        option[i].checked=false;
         option[i].value=question1.answers[i];
         labels[i].innerHTML=question1.answers[i];
     }
-    next.classList.remove('d-none');
+    next.classList.add('d-none');
     correct.classList.add('d-none');
     incorrect.classList.add('d-none');
     submit.classList.remove('d-none');
 }
 
+function checkAnswers(){
+    var selected=null;
+    for(let i=0;i<option.length;i++)
+    {
+        if(option[i].checked){
+            selected=option[i].value;
+        }
+    }
+    if(!selected){
+        alert("Please Select An option");
+    }
+
+    else{
+        for(let i=0;i<option.length;i++){
+            option[i].disabled=true;
+        }
+
+        if(selected===questions[index].correctAnswer){
+            correct.classList.remove('d-none');
+            score+=questions[index].score;
+        }
+        else{
+            incorrect.classList.remove('d-none');
+        }
+
+        index++;
+        submit.classList.add('d-none');
+        next.classList.remove('d-none');
+    }
+}
 
 
 
+function setUpAnswers(){
+    var ul=document.createElement('ul');
+    ul.setAttribute('id','answerList');
 
+    for(let i=0;i<questions.length;i++){
+        var li=document.createElement('li');
+        var text=document.createTextNode(questions[i].question + ' - ');
+        var span=document.createElement('span');
+
+        span.classList.add('badge');
+        span.classList.add('badge-success');
+        span.innerHTML=questions[i].answers;
+        li.appendChild(text);
+        li.appendChild(span);
+        ul.appendChild(li);
+    }
+    
+    answerKey.appendChild(ul);
+}
+
+
+function restartQuiz(){
+    index=0;
+    score=0;
+    header.innerHTML="Quiz";
+    quiz.classList.remove('d-none');
+    restart.classList.add('d-none');
+    answerKey.classList.add('d-none');
+    answerKeyHeading.classList.add('d-none');
+    var ul=document.getElementById('answerList');
+    if(ul){
+        answerKey.removeChild(ul);
+    }
+    displayNextQuestion();
+}
+
+
+submit.addEventListener('click',checkAnswers);
+next.addEventListener('click',displayNextQuestion);
+restart.addEventListener('click',restartQuiz);
 
 
 
