@@ -110,3 +110,75 @@
                 score:1,
             },
         ];
+
+
+var index=0;
+var score=0;
+
+var header=document.getElementById('header');
+var answerKeyHeading=document.getElementById('answerKeyHeading');
+var quiz=document.getElementById('quiz');
+var answerKey=document.getElementById('answerKey');
+var statement=document.getElementById('statement');
+var correct=document.getElementById('correct');
+var incorrect=document.getElementById('incorrect');
+var submit=document.getElementById('Submit');
+var next=document.getElementById('next');
+var restart=document.getElementById('restart');
+var option = document.getElementsByName('option');
+var labels = document.getElementsByTagName('label');
+displayNextQuestion() ;
+function displayNextQuestion(){
+    if(index===questions.length){
+        header.innerHTML=`Score:${score}`;
+        quiz.classList.add('d-none');
+        answerKeyHeading.classList.remove('d-none');
+        answerKey.classList.remove('d-none');
+        setUpAnswers();
+        restart.classList.remove('d-none');
+        next.classList.add('d-none');
+        return;      
+    }
+
+    const question1=questions[index];
+    statement.innerHTML=question1.question;
+    for(let i=0;i<option.length;i++){
+        option[i].disabled=false;
+        option[i].visited=false;
+        option[i].value=question1.answers[i];
+        labels[i].innerHTML=question1.answers[i];
+    }
+    next.classList.remove('d-none');
+    correct.classList.add('d-none');
+    incorrect.classList.add('d-none');
+    submit.classList.remove('d-none');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
