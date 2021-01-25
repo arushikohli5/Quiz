@@ -1,21 +1,14 @@
 <html>
     <head>
-        <style>
-            #correct{
-                display:None;
-            }
-
-            #incorrect{
-                display:None;
-            }
-        </style>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     </head>
     <body>
+        
         <div class="container-fluid">
            <div class="row">
                 <div class="col-12 bg-dark">
@@ -23,7 +16,7 @@
                 </div>
            </div>
             <div class="row">
-                <div class="col-12 mt-5 mb-4 text-center">
+                <div class="col-12 mt-5 mb-4 text-center d-none">
                     <h3 id="answerKeyHeading">Answer Key</h3>
                 </div>
             </div>            
@@ -31,7 +24,7 @@
             <div class="container bg-white jumbotron" id="quiz" >
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <h4 id="statement"></h4>
+                        <h4 id="statement">A complete graph can have</h4>
                     </div>
                 </div>
 
@@ -47,11 +40,11 @@
 
 
                 <div class="row">
-                    <div class="col-md-2 col-3 my-2">
-                        <div class="alert alert-success" id="correct">
+                    <div class="col-md-4 col-4 my-2">
+                         <div class="alert alert-success d-none" id="correct">
                             <strong>Correct</strong>
                         </div>
-                        <div class="alert alert-danger" id="incorrect">
+                        <div class="alert alert-danger d-none" id="incorrect">
                             <strong>Incorrect</strong>
                         </div>
                     </div>
@@ -59,7 +52,7 @@
                 <div class="row">
                     <div class="col-12">
                         <button class="btn" id="Submit">Submit</button>
-                        <button class="btn" id="next">Next</button>
+                        <button class="btn d-none" id="next">Next</button>
                     </div>
                 </div>
 
@@ -68,179 +61,11 @@
             <div class="container jumboton bg-white m-5 py-4" id="answerKey"></div>
             <div class="row">
                 <div class="col-md-2 col-3 my-2 mx-5">
-                    <button class="btn btn-primary" id="restart">Restart</button>
+                    <button class="btn btn-primary d-none" id="restart">Restart</button>
                 </div>
             </div>
         </div>
     </body>
     <script src="index.js"></script>
-     <script>
-       /* quiz=document.getElementById("quizContent");
-        result=document.getElementById("result");
-        btn=document.getElementById("btn");
-        correct=document.getElementById("correct");
-        incorrect=document.getElementById("incorrect");
-
-        
-
-        const questions=[
-            {
-                question: "Which of the following function of Array object joins all elements of an array into a string?",
-                answers:{
-                    a:"concat()",
-                    b: "join()",
-                    c : "pop",
-                    d:  "map()"
-                },
-                correctAnswer:"b"
-            },
-            {
-                question: "Who invented JavaScript?",
-                answers: {
-                a: "Douglas Crockford",
-                b: "Sheryl Sandberg",
-                c: "Brendan Eich"
-                },
-                correctAnswer: "c"
-            },
-            {
-                question:"Which of the following function of Array object applies a function simultaneously against two values of the array (from right-to-left) as to reduce it to a single value?",
-                answers:{
-                    a:"pop()",
-                    b:"push()",
-                    c:"reduce()",
-                    d:"reduceRight()"
-                },
-                correctAnswer:"d"
-            },
-            {
-                question:"Which of the following function of String object returns the index within the calling String object of the last occurrence of the specified value",
-                answers:{
-                    a:"lastIndexOf()",
-                    b:"search()",
-                    c:"substr()",
-                    d:"indexOf()"
-                },
-                correctAnswer:"a"
-            },
-            {
-                question:"Which built-in method returns the character at the specified index?",
-                answers:{
-                    a:"characterAt()",
-                    b:"getCharAt()",
-                    c:"charAt()",
-                    d:"None of the above"
-                },
-                correctAnswer:"c"
-            },
-            {
-                question: "Which tool can you use to ensure code quality?",
-                answers: {
-                a: "Angular",
-                b: "jQuery",
-                c: "RequireS",
-                d: "ESLint"
-                },
-                correctAnswer: "d"
-            },
-            {
-                question:" Which of the following function of String object causes a string to be displayed in the specified color as if it were in a tag",
-                answers:{
-                    a:"fixed()",
-                    b:"fontcolor()",
-                    c:"blink()",
-                    d:"bold()"
-                },
-                correctAnswer:"b"
-            },
-            {
-                question: "Which one of these is a JavaScript package manager?",
-                answers: {
-                a: "Node.js",
-                b: "TypeScript",
-                c: "npm"
-                },
-                correctAnswer: "c"
-            },
-            {
-                question: "Who invented JavaScript?",
-                answers: {
-                a: "Douglas Crockford",
-                b: "Sheryl Sandberg",
-                c: "Brendan Eich"
-                },
-                correctAnswer: "c"
-            },
-            {
-                question: "Which of the following function of Array object joins all elements of an array into a string?",
-                answers:{
-                    a:"concat()",
-                    b: "join()",
-                    c : "pop",
-                    d:  "map()"
-                },
-                correctAnswer:"b"
-            },
-        ];
-
-
-        function quizQuestions(){
-            var output=[];
-
-            questions.forEach((currentq,qno)=>{
-                var answers=[];
-                for(a in currentq.answers){
-                    answers.push(
-                        `<label>
-                        <input type="radio" name="questions ${qno}" value="${a}">
-                        ${a}:
-                        ${currentq.answers[a]}
-
-                        </label>`
-                    );
-                }
-
-                output.push(
-                    `<div class="question"> ${currentq.question}
-                     </div>
-                    <div class="answers">${answers.join('')
-                    } 
-                    </div>`
-                );
-            }
-
-        );
-
-        quiz.innerHTML=output.join('');
-        }
-
-        function showResult(){
-            console.log("working");
-            var answerContainers=quiz.querySelectorAll('.answers');
-            let numCorrect=0;
-
-            questions.forEach((currentque,qno)=>{
-                const answerContainer=answerContainers[qno];
-                const selector=`input[name=question${qno}]:checked`;
-                const userAnswer=(answerContainer.querySelector(selector)||{}).value;
-
-
-                if(userAnswer===currentque.correctAnswer){
-                    console.log(numCorrect);
-                    numCorrect++;
-                    answerContainers[qno].styleColor="lightgreen";
-                }
-                else{
-                    //result.addChild("correct");
-                    answerContainers[qno].styleColor="red";
-                }
-            });
-            
-            result.innerHTML=`Your Score: ${numCorrect}`;
-        }
-
-        quizQuestions();
-        btn.addEventListener('click',showResult);*/
-        
-    </script>
+      
 </html>
